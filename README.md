@@ -2,6 +2,9 @@
 
 This is the official repository for the paper Galetto, F. and Deng, G. Single image deep defocus clasification and its applications IEEE Transactions on Multimedia 2021
 
+ 
+
+[>> Download the pretrained model from here <<](https://drive.google.com/file/d/1ii3yyCU6SiXOWQ1aE3PCUz7Fftz7GOEf/view?usp=sharing)
 ## Defocus blur estimation
 
 <p float="left">
