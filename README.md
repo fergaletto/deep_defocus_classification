@@ -8,7 +8,7 @@ This is the official repository for the paper Galetto, F. and Deng, G. Single im
 
 [>> Download the dataset from here <<](https://drive.google.com/file/d/1QrVuo97xJFdkyp3zc98AgGp1wkxzdeHA/view?usp=sharing)
 
-
+[>> Download the paper from here <<](https://drive.google.com/file/d/1njHOy5zIOVgy4k8Nx0UqfRn26Hvv9mWv/view?usp=sharing)
 
 ## Defocus blur estimation
 
