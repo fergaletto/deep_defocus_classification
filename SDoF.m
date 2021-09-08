@@ -1,4 +1,4 @@
-function I = SDoF_test(im, W)
+function I = SDoF(im, W)
 % this function produces the shallow depth of field effect by fusioning a
 % blurred and sharpen version uf the input image using W as weight map.
 % set parameters maxIter to generate a blurrer image. 
