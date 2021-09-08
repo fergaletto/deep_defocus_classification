@@ -50,4 +50,4 @@ imwrite(x, 'images/x.png');
 imwrite(b_map, 'images/b_map.png');
 imwrite(b_map_refined, 'images/b_map_refined.png');
 imwrite(W, 'images/W.png');
-imwrite(I, 'images/I.png');
+imwrite(uint8(I), 'images/I.png');
