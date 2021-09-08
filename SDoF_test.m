@@ -1,4 +1,4 @@
-function [I, B, S] = SDoF_test(im, W)
+function I = SDoF_test(im, W)
 % this function produces the shallow depth of field effect by fusioning a
 % blurred and sharpen version uf the input image using W as weight map.
 % set parameters maxIter to generate a blurrer image. 
@@ -7,47 +7,29 @@ function [I, B, S] = SDoF_test(im, W)
 J = double(im);
 
 %% Blur image generation. 
+
 %iterative guided filter
 maxIter = 3;
 r = 15; %radius of the filter, bigger -> bigger features smooth out
-a = 3;
-
-EPS = 256/a; %smoothness, bigger -> more wash out effect
-
-    
-windowSize = 33;
-avg3 = ones(windowSize) / windowSize^2;
+% a = 3;
+% EPS = 256/a; %smoothness, bigger -> more wash out effect
+%  
+% windowSize = 33;
+% avg3 = ones(windowSize) / windowSize^2;
 
 
 [h,w,C] =size(J);
 
 B = J;
  
-B(:,:,1) = roifill(J(:,:,1),W);
-B(:,:,2) = roifill(J(:,:,2),W);
-B(:,:,3) = roifill(J(:,:,3),W);
+B(:,:,1) = regionfill(J(:,:,1),W>0.01);
+B(:,:,2) = regionfill(J(:,:,2),W>0.01);
+B(:,:,3) = regionfill(J(:,:,3),W>0.01);
 
 for n = 1 : maxIter
-  % B = imfilter(B, avg3, 'symmetric', 'same', 'conv');
-    B = imresize(double(imguidedfilter(imresize(B, 0.25), imresize(W,0.25), 'NeighborhoodSize', r, 'DegreeOfSmoothing',256/2)), [h, w]);
+   %B = imfilter(B, avg3, 'symmetric', 'same', 'conv'); % Option 1
+   B = imresize(double(imguidedfilter(imresize(B, 0.25), imresize(W,0.25), 'NeighborhoodSize', r, 'DegreeOfSmoothing',256/2)), [h, w]); %option 2
 end
-
-
-
-% 
-% % some data - focused image, grey levels in range 0 to 1
-% focused_image = J
-% defocused_image = [];
-% % approximate psf as a disk
-% for c=1 :3
-%     r = 30; % defocusing parameter - radius of psf
-%     [x, y] = meshgrid(-r:r);
-%     disk = double(x.^2 + y.^2 <= r.^2);
-%     disk = disk./sum(disk(:));
-%     defocused_image(:,:,c) = conv2(focused_image(:,:,c), disk, 'same');
-% end
-% B = defocused_image;
-% size(B)
 
 
 %% Sharp image generation. 

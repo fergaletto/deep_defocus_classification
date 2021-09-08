@@ -37,6 +37,4 @@ function m = get_blurmap(im, model, stepSize, s0)
     end
 
     m = (J./C); 
-    m = rescale(m);
-
 end
